@@ -1,0 +1,58 @@
+****Create Cluster By EKS****
+
+
+THEIR ARE 2 TYPES
+
+1.  MANUALLY:-  
+
+
+*AWS CLI – A command line tool for working with AWS services, including Amazon EKS. For more information, see Installing, updating, and uninstalling the AWS CLI in the AWS Command Line Interface User Guide. After installing the AWS CLI, we recommend that you also configure it. For more information, see Quick configuration with aws configure in the AWS Command Line Interface User Guide.
+
+*kubectl – A command line tool for working with Kubernetes clusters. For more information, see Installing or updating kubectl.
+
+*Required IAM permissions – The IAM security principal that you're using must have permissions to work with Amazon EKS IAM roles, service linked roles, AWS CloudFormation, a VPC, and related resources. For more information, see Actions, resources, and condition keys for Amazon Elastic Kubernetes Service and Using service-linked roles in the IAM User Guide
+
+ Create Instance -- Take SSH
+@--@ You can easily upgrade it to the latest by using below command:  
+# curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip awscliv2.zip
+
+# sudo ./aws/install
+ Above command will download the binaries and install the AWS CLI in your instance or override in case you have the older one
+
+@--@ Now, we are going to install below item as prerequisites
+
+1.kubectl
+2.Eksctl
+3.Required IAM Permissions to Instance
+
+@--@ Then Create Role 
+
+1. AWSClioudFormation
+2. AdministratoorAccess
+3. IAMFullAccess
+4. AmazinEC2Access
+
+At backend, EKSCTL utility is using CloudFormation to do all the cluster creation, so EC2 machine must have all the required permission to perform the actions.
+
+@--@ Now, using eksctl utility, we are going to create an EKS Cluster
+
+# eksctl create cluster --name devops-1 --region us-east-2 --node-type t2.small
+
+* This will create a cluster with name “devops-1” in ohio region with 2 worker node of type t2.small
+
+* Successfully created the EKS cluster with 2 worker nod
+
+* Now, its time to validate the cluster using few Kubernetes command using kubectl utility
+
+#kubectl get nodes
+#kubectl get deployment
+#kubectl get rs
+#kubectl get pod
+
+#kubectl expose deployment web-app --port=80 --type=LoadBalancer
+
+copy your external ip nd paste crome to show your application what you deploy
+
+
+
