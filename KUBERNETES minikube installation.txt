@@ -1,0 +1,71 @@
+     "KUBERNETES"
+
+
+Benefits of Kubernetes
+Kubernetes is good at managing containers across diverse nodes;
+Kubernetes is compatible with many public and private cloud infrastructures;
+Kubernetes allows you to automatically scale your application when it needs more resources to run successfully;
+Kubernetes self-healing feature automatically restarts failing containers and replaces unhealthy containers.
+
+
+   #INSTALL  MINIKUBE#
+
+
+
+2 GB RAM or more
+2 CPU / vCPU or more
+20 GB free hard disk space or more
+Docker / Virtual Machine Manager – KVM & VirtualBox
+
+CREEATE INSTANCE -- TAKE SSH
+
+Pre-Installed Ubuntu 22.04 / 20.04
+Sudo User with admin privileges
+Stable Internet Connection
+
+#"UPDATE YOUR SYSTEM"#
+
+
+$ sudo apt update -y
+$ sudo apt upgrade -y
+$ sudo reboot
+
+#INSTALL MINICUBE DEPENDENCIES##
+
+
+$ sudo apt install -y curl wget apt-transport-https
+$ curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+
+## Once the binary is downloaded, copy it to the path /usr/local/bin and set the executable permissions on it ##
+
+$ sudo install minikube-linux-amd64 /usr/local/bin/minikube
+
+TO CHECK = MINIKUBE VERSION
+
+#@#@ INSTALL KUBECTL UTILITY#@#
+
+$ curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl
+
+Once kubectl is downloaded then set the executable permissions on kubectl binary and move it to the path /usr/local/bin == = 
+
+                               $ chmod +x kubectl
+                               $ sudo mv kubectl /usr/local/bin/
+
+VRIFY KUBECTL VERSION 
+
+==KUBECTL VERSION -O YAML==
+
+##start minikube##
+
+$ minikube start --driver=docker
+$ minikube start --addons=ingress --cpus=2 --cni=flannel --install-addons=true --kubernetes-version=stable --memory=6g
+
+
+@@Run following kubectl command to verify the Kubernetes version, node status and cluster info@@
+
+
+$ kubectl cluster-info
+$ kubectl get nodes
+
+
+
